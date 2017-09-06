@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import resolvePathname from 'resolve-pathname'
 
 import Home from './Home'
 import About from './About'
@@ -17,12 +16,13 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap'
  * window.location caters to relative pathnames
  * i.e. when deployed to github pages
  */
-let pathname = window.location.pathname === '/' ? '/' : window.location.pathname + '/'
-const HOME_ROUTE = resolvePathname("/", pathname)
-const ABOUT_ROUTE = resolvePathname("/about-us", pathname)
+const HOME_ROUTE = resolvePathname("/")
+const ABOUT_ROUTE = resolvePathname("/about-us")
 
-console.log(HOME_ROUTE)
-console.log(ABOUT_ROUTE)
+function resolvePathname (url) {
+  let pathname = window.location.pathname === '/' ? '/' : window.location.pathname
+  return url === pathname ? url : pathname + url
+} 
 
 const App = () => (
   <div>
