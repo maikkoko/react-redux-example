@@ -4,6 +4,6 @@ import {PageHeader} from 'react-bootstrap'
 export default () => (
   <div>
     <PageHeader>About Us</PageHeader>
-    <p>Hello Medium!</p>
+    <p>Hello World!</p>
   </div>
 )
