@@ -21,7 +21,7 @@ const ABOUT_ROUTE = resolvePathname("/about-us")
 
 function resolvePathname (url) {
   let pathname = window.location.pathname === '/' ? '/' : window.location.pathname
-  return url === pathname ? url : pathname + url
+  return url === pathname ? pathname : pathname + url
 } 
 
 const App = () => (
