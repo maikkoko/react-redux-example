@@ -49,6 +49,7 @@ const Home = props => (
         Decrement Async
       </Button>
     </ButtonToolbar>
+    <br />
     <ButtonToolbar>
       <Button onClick={() => props.changePage('about-us')}>
         Go to about page via redux
