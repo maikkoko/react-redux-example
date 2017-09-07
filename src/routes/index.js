@@ -1,60 +1,19 @@
-import React from 'react';
-import { Route } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
+import React from "react"
+import { Route, Switch } from "react-router-dom"
 
-import Home from './Home'
-import About from './About'
+import asyncComponent from '../components/AsyncComponent'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap-theme.css'
-import './index.css'
+const CoreLayout = asyncComponent(() => import(/* webpackChunkName: "layout" */ '../layouts/CoreLayout/CoreLayout'));
+const AsyncHome = asyncComponent(() => import(/* webpackChunkName: "home" */ "./Home/HomeContainer"));
+const AsyncAbout = asyncComponent(() => import(/* webpackChunkName: "about" */ "./About/AboutView"));
 
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
-
-/*
- * Routes
- * window.location caters to relative pathnames
- * i.e. when deployed to github pages
- */
-const HOME_ROUTE = resolvePathname("/")
-const ABOUT_ROUTE = resolvePathname("/about-us")
-
-function resolvePathname (url) {
-  let pathname = window.location.pathname === '/' ? '/' : window.location.pathname
-  return url === pathname ? pathname : pathname + url
-} 
-
-const App = () => (
-  <div>
-    
-    <AppNav />
-
-    <div className='container'>
-      <Route exact path={HOME_ROUTE} component={Home} />
-      <Route exact path={ABOUT_ROUTE} component={About} />
-    </div>
-  
-  </div>
+export const createRoutes = (store) => (
+  <CoreLayout>
+    <Switch>
+      <Route path="/" exact component={AsyncHome} />
+      <Route path="/about" exact component={AsyncAbout} />
+    </Switch>
+  </CoreLayout>
 )
 
-export default App
-
-const AppNav = () => (
-  <Navbar inverse>
-    <Navbar.Header>
-      <LinkContainer to={HOME_ROUTE}>
-        <Navbar.Brand>
-          React-Redux-Example
-        </Navbar.Brand>
-      </LinkContainer>
-    </Navbar.Header>
-    <Nav>
-      <LinkContainer to={HOME_ROUTE}>
-        <NavItem>Home</NavItem>
-      </LinkContainer>
-      <LinkContainer to={ABOUT_ROUTE}>
-        <NavItem>About</NavItem>
-      </LinkContainer>
-    </Nav>
-  </Navbar>
-)
+export default createRoutes

@@ -3,17 +3,14 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './store'
-import App from './routes'
 
-const target = document.querySelector('#root')
+const routes = require('./routes/index').default(store)
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
+      { routes }
     </ConnectedRouter>
   </Provider>,
-  target
+  document.getElementById('root')
 )

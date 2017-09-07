@@ -3,6 +3,6 @@ import { routerReducer } from 'react-router-redux'
 import counter from './counter'
 
 export default combineReducers({
-  route: routerReducer,
+  routes: routerReducer,
   counter
 })
