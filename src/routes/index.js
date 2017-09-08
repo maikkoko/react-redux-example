@@ -1,17 +1,18 @@
-import React from "react"
-import { Route, Switch } from "react-router-dom"
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
-import asyncComponent from '../components/AsyncComponent'
+import CoreLayout from '../layouts/CoreLayout'
 
-const CoreLayout = asyncComponent(() => import(/* webpackChunkName: "layout" */ '../layouts/CoreLayout/CoreLayout'));
-const AsyncHome = asyncComponent(() => import(/* webpackChunkName: "home" */ "./Home/HomeContainer"));
-const AsyncAbout = asyncComponent(() => import(/* webpackChunkName: "about" */ "./About/AboutView"));
+import Home from './Home'
+import Counter from './Counter'
+import NotFound from './NotFound'
 
-export const createRoutes = (store) => (
+export const createRoutes = store => (
   <CoreLayout>
     <Switch>
-      <Route path="/" exact component={AsyncHome} />
-      <Route path="/about" exact component={AsyncAbout} />
+      <Route path="/" exact component={Home} />
+      <Route path="/counter" exact component={Counter(store)} />
+      <Route component={NotFound} />
     </Switch>
   </CoreLayout>
 )

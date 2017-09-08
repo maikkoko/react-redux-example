@@ -6,9 +6,9 @@ import {
   incrementAsync,
   decrement,
   decrementAsync
-} from '../../store/counter'
+} from '../modules/counter'
 
-import Home from './HomeView'
+import Counter from '../components/Counter'
 
 const mapStateToProps = state => ({
   count: state.counter.count,
@@ -16,15 +16,16 @@ const mapStateToProps = state => ({
   isDecrementing: state.counter.isDecrementing
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync,
-  changePage: (location) => push(location)
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      increment,
+      incrementAsync,
+      decrement,
+      decrementAsync,
+      changePage: location => push(location)
+    },
+    dispatch
+  )
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)

@@ -1,16 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'react-router-redux'
-import store, { history } from './store'
+import createStore from './store/createStore'
+import registerServiceWorker from './lib/registerServiceWorker'
 
+const store = createStore()
+const App = require('./containers/App').default
 const routes = require('./routes/index').default(store)
 
-render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      { routes }
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+render(<App store={store} routes={routes} />, document.getElementById('root'))
+
+registerServiceWorker()

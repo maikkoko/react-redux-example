@@ -1,38 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
-import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap-theme.css'
+import logo from './logo.svg'
 import './CoreLayout.css'
 
 export const CoreLayout = ({ children }) => (
-  <div>
-  
-    <Navbar inverse>
-      <Navbar.Header>
-        <LinkContainer to='/'>
-          <Navbar.Brand>
-            React-Redux-Example
-          </Navbar.Brand>
-        </LinkContainer>
-      </Navbar.Header>
-      <Nav>
-        <LinkContainer to='/'>
-          <NavItem>Home</NavItem>
-        </LinkContainer>
-        <LinkContainer to='/about'>
-          <NavItem>About</NavItem>
-        </LinkContainer>
-      </Nav>
-    </Navbar>
-  
-    <div className='container'>
-      { children }
+  <div className="page">
+    <div className="page-header">
+      <img src={logo} className="page-logo" alt="logo" />
+      <h2>Welcome to React</h2>
     </div>
-  
+    <div className="page-nav">
+      <NavLink exact to="/" activeClassName="page-nav--active">
+        Home
+      </NavLink>
+      <NavLink to="/counter" activeClassName="page-nav--active">
+        Counter
+      </NavLink>
+      <NavLink to="/random-link">Random Link</NavLink>
+    </div>
+    <div className="page-content">{children}</div>
   </div>
 )
 
@@ -41,4 +29,3 @@ CoreLayout.propTypes = {
 }
 
 export default CoreLayout
-
