@@ -9,5 +9,10 @@
         "semi": false
       }
     ]
+  },
+  "globals": {
+    "shallow": true,
+    "mount": true,
+    "render": true
   }
 }
